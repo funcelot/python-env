@@ -1,0 +1,47 @@
+let lazy_require_data = (requre) => (eval) => (data) => new Proxy(data, {
+  set(obj, key, val) {
+    obj[key] = val;
+    if (requre(obj)) {
+      eval(obj);
+    }
+  }
+});
+
+// 1. ARRANGE
+let a_data = 1;
+let b_data = 2;
+let c_data;
+
+// 2. ACT
+let func_require_data = lazy_require_data((f) => f.a && f.b);
+
+let func_data = func_require_data((f) => {
+    c_data = f.a + ' ' + f.b
+});
+
+let func_json = func_data({
+    a: 'hello',
+    //b: b_data
+});
+
+func_json.b = 'world';
+//func_json.b = b_data;
+
+// 3. ASSERT
+
+new Vue({
+  el: '#editor',
+  data: {
+    input: '# ' + c_data
+  },
+  computed: {
+    compiledMarkdown: function () {
+      return marked(this.input, { sanitize: true })
+    }
+  },
+  methods: {
+    update: _.debounce(function (e) {
+      this.input = e.target.value
+    }, 17)
+  }
+});

@@ -1,0 +1,37 @@
+{
+    // Документацию по формату tasks.json см.
+    // по адресу https://go.microsoft.com/fwlink/?LinkId=733558
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "install",
+            "type": "npm",
+            "script": "install",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "kill",
+            "type": "shell",
+            "command": "kill -9 $(ps aux | grep 'node' | awk '{print $2}')",
+            "windows": {
+                "command": "powershell -file ./stop.ps1"
+            },
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "isBackground": false,
+            "promptOnClose": false,
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        }
+    ]
+}

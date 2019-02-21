@@ -1,0 +1,28 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "launch.json",
+    "node_modules/**/*",
+    "node_modules/**/node_modules"
+  ],
+  "verbose": true,
+  "noReset": true,
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "events": {
+    "crash": "powershell -file ./stop.ps1"
+  },
+  "watch": [
+    "public/",
+    "views/",
+    "*.js",
+    "*.json"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "delay": "1",
+  "ext": "js,json,hbs,py"
+}

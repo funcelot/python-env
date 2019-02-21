@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+<head>
+  {{> manifest }}
+  <title>{{title}}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#317EFB"/>
+  {{> import }}
+  <style type='text/css'>
+    {{> css}}
+  </style>
+</head>
+<body>
+  {{{ body }}}
+  <script language='javascript'>
+    {{> js}}
+  </script>
+</body>
+</html>

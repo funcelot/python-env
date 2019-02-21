@@ -1,0 +1,1 @@
+& node ./node_modules/nodemon/bin/nodemon.js --inspect --config ./nodemon.json $args
